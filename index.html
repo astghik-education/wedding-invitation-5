@@ -13,135 +13,83 @@
         }
 
         :root {
-            --cream-primary: #FDF8F3;
-            --cream-secondary: #F5EBE0;
-            --cream-dark: #E8DCD0;
-            --gold: #D4AF37;
-            --gold-light: #F4E8C1;
-            --text-dark: #4A4A4A;
-            --text-light: #7D7D7D;
-            --rose: #E8D5D0;
+            --primary: #b08968;
+            --primary-light: #c9a88a;
+            --primary-dark: #8b6b4e;
+            --cream: #faf7f2;
+            --cream-dark: #f0ebe3;
+            --text-dark: #3d3d3d;
+            --text-light: #6b6b6b;
+            --white: #ffffff;
         }
 
         body {
             font-family: 'Noto Sans Armenian', sans-serif;
-            background: linear-gradient(135deg, var(--cream-primary) 0%, var(--cream-secondary) 100%);
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
             color: var(--text-dark);
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--cream-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 5px;
-        }
-
-        /* Music Player */
-        .music-player {
+        /* Music Button - Fixed */
+        .music-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            z-index: 1000;
-            background: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--gold-light);
-        }
-
-        .music-player:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(212,175,55,0.3);
-        }
-
-        .music-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gold);
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulse 2s infinite;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 25px rgba(176, 137, 104, 0.4);
+            transition: all 0.3s ease;
+            border: 3px solid var(--white);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(176, 137, 104, 0.6);
         }
 
-        .music-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            color: var(--text-dark);
+        .music-btn.playing {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .music-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(253,248,243,0.8), rgba(245,235,224,0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23D4AF37" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background: linear-gradient(rgba(250, 247, 242, 0.9), rgba(240, 235, 227, 0.95)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920');
             background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .floating-hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: var(--rose);
-            animation: float 10s infinite ease-in;
-            opacity: 0.6;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
         }
 
         .hero h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 5rem;
-            color: var(--gold);
+            color: var(--primary);
             margin-bottom: 20px;
             animation: fadeInUp 1.5s ease;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .hero .names {
@@ -151,17 +99,18 @@
             margin-bottom: 30px;
             animation: fadeInUp 2s ease;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
         }
 
         .hero .date {
             font-size: 1.5rem;
             color: var(--text-light);
             animation: fadeInUp 2.5s ease;
-            border-top: 1px solid var(--gold);
-            border-bottom: 1px solid var(--gold);
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
             padding: 15px 40px;
             display: inline-block;
+            margin-bottom: 40px;
         }
 
         @keyframes fadeInUp {
@@ -175,21 +124,52 @@
             }
         }
 
+        /* Countdown */
+        .countdown {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            animation: fadeInUp 3s ease;
+        }
+
+        .countdown-item {
+            background: var(--white);
+            padding: 25px 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(176, 137, 104, 0.2);
+            min-width: 100px;
+        }
+
+        .countdown-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
             animation: bounce 2s infinite;
-            color: var(--gold);
+            color: var(--primary);
             font-size: 2rem;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
         }
 
-        /* Sections General */
+        /* Sections */
         section {
             padding: 100px 20px;
             max-width: 1200px;
@@ -199,50 +179,20 @@
         .section-title {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
-            color: var(--gold);
+            color: var(--primary);
             text-align: center;
-            margin-bottom: 50px;
-            position: relative;
+            margin-bottom: 60px;
         }
 
-        .section-title::before,
-        .section-title::after {
-            content: '❦';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gold-light);
-            font-size: 1.5rem;
-        }
-
-        .section-title::before {
-            left: 40%;
-        }
-
-        .section-title::after {
-            right: 40%;
-        }
-
-        /* Welcome Text */
+        /* Welcome */
         .welcome {
-            background: white;
+            background: var(--white);
             padding: 60px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(176, 137, 104, 0.1);
             text-align: center;
             margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .welcome::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--cream-dark), var(--gold), var(--cream-dark));
+            border: 2px solid var(--cream-dark);
         }
 
         .welcome p {
@@ -253,7 +203,7 @@
             font-style: italic;
         }
 
-        /* Journey Timeline */
+        /* Journey Timeline with Dots */
         .journey {
             position: relative;
             padding: 50px 0;
@@ -263,17 +213,18 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 3px;
+            width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--gold-light), var(--gold), var(--gold-light));
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary), var(--primary-light));
             top: 0;
+            z-index: 1;
         }
 
         .journey-item {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 100px;
             position: relative;
             opacity: 0;
             transform: translateY(50px);
@@ -292,40 +243,37 @@
 
         .journey-content {
             width: 40%;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            background: var(--white);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(176, 137, 104, 0.15);
             position: relative;
             transition: transform 0.3s ease;
+            border: 2px solid var(--cream-dark);
         }
 
         .journey-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 35px rgba(212,175,55,0.2);
+            box-shadow: 0 12px 40px rgba(176, 137, 104, 0.25);
         }
 
-        .journey-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gold);
+        .journey-dot {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            border: 5px solid var(--cream-primary);
+            border: 5px solid var(--white);
+            box-shadow: 0 0 0 4px var(--primary-light);
         }
 
         .journey-time {
             font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: var(--gold);
+            font-size: 2rem;
+            color: var(--primary);
             margin-bottom: 10px;
         }
 
@@ -345,20 +293,20 @@
 
         .journey-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-top: 15px;
-            border: 3px solid var(--cream-secondary);
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 3px solid var(--cream-dark);
         }
 
-        /* Photo Gallery */
+        /* Gallery */
         .gallery {
-            background: white;
+            background: var(--white);
             padding: 80px 40px;
             border-radius: 30px;
             margin: 80px auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(176, 137, 104, 0.1);
         }
 
         .gallery-grid {
@@ -379,8 +327,8 @@
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(176, 137, 104, 0.3);
         }
 
         .gallery-item img {
@@ -394,37 +342,22 @@
             transform: scale(1.1);
         }
 
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(212,175,55,0.8), transparent);
-            padding: 20px;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* Calendar Section */
+        /* Calendar */
         .calendar-section {
-            background: linear-gradient(135deg, var(--cream-secondary) 0%, var(--cream-primary) 100%);
+            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
             padding: 80px 40px;
             border-radius: 30px;
             text-align: center;
             margin: 80px auto;
+            border: 3px solid var(--primary-light);
         }
 
         .calendar-container {
-            background: white;
+            background: var(--white);
             border-radius: 20px;
             padding: 40px;
             display: inline-block;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(176, 137, 104, 0.15);
             margin-top: 30px;
         }
 
@@ -444,7 +377,7 @@
 
         .calendar-day-header {
             font-weight: 600;
-            color: var(--gold);
+            color: var(--primary);
             padding: 10px;
             text-align: center;
         }
@@ -459,7 +392,6 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.3rem;
             transition: all 0.3s ease;
-            cursor: default;
         }
 
         .calendar-day.other-month {
@@ -467,11 +399,11 @@
         }
 
         .calendar-day.special {
-            background: var(--gold);
-            color: white;
+            background: var(--primary);
+            color: var(--white);
             position: relative;
             animation: heartbeat 1.5s infinite;
-            cursor: pointer;
+            font-weight: 600;
         }
 
         .calendar-day.special::after {
@@ -480,8 +412,14 @@
             top: -5px;
             right: -5px;
             font-size: 0.8rem;
-            color: var(--rose);
-            animation: pulse 1s infinite;
+            color: var(--primary);
+            background: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @keyframes heartbeat {
@@ -489,12 +427,12 @@
             50% { transform: scale(1.05); }
         }
 
-        /* RSVP Section */
+        /* RSVP */
         .rsvp {
-            background: white;
+            background: var(--white);
             padding: 80px 40px;
             border-radius: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 40px rgba(176, 137, 104, 0.1);
             margin: 80px auto;
         }
 
@@ -505,7 +443,6 @@
 
         .form-group {
             margin-bottom: 30px;
-            position: relative;
         }
 
         .form-group label {
@@ -526,7 +463,7 @@
             border-radius: 10px;
             font-family: 'Noto Sans Armenian', sans-serif;
             font-size: 1rem;
-            background: var(--cream-primary);
+            background: var(--cream);
             transition: all 0.3s ease;
         }
 
@@ -534,14 +471,13 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--gold);
-            background: white;
-            box-shadow: 0 5px 15px rgba(212,175,55,0.1);
+            border-color: var(--primary);
+            background: var(--white);
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            color: white;
+            background: var(--primary);
+            color: var(--white);
             border: none;
             padding: 18px 60px;
             font-family: 'Cormorant Garamond', serif;
@@ -551,26 +487,27 @@
             display: block;
             margin: 40px auto 0;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(212,175,55,0.3);
+            box-shadow: 0 5px 20px rgba(176, 137, 104, 0.3);
         }
 
         .submit-btn:hover {
+            background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+            box-shadow: 0 8px 30px rgba(176, 137, 104, 0.4);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 50px 20px;
-            background: var(--cream-secondary);
+            background: var(--cream-dark);
             margin-top: 100px;
         }
 
         footer p {
             font-family: 'Great Vibes', cursive;
             font-size: 2rem;
-            color: var(--gold);
+            color: var(--primary);
         }
 
         /* Lightbox */
@@ -581,7 +518,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -595,79 +532,47 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
-            box-shadow: 0 0 50px rgba(212,175,55,0.3);
+            border: 5px solid var(--white);
         }
 
         .lightbox-close {
             position: absolute;
             top: 30px;
             right: 40px;
-            color: white;
+            color: var(--white);
             font-size: 3rem;
             cursor: pointer;
             transition: color 0.3s ease;
         }
 
         .lightbox-close:hover {
-            color: var(--gold);
+            color: var(--primary);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
+            .hero h1 { font-size: 3rem; }
+            .hero .names { font-size: 1.5rem; }
+            .countdown { gap: 10px; }
+            .countdown-item { padding: 15px 20px; min-width: 70px; }
+            .countdown-number { font-size: 2rem; }
             
-            .hero .names {
-                font-size: 1.8rem;
-            }
-            
-            .journey-line {
-                left: 30px;
-            }
-            
-            .journey-item,
-            .journey-item:nth-child(even) {
-                justify-content: flex-start;
-            }
-            
-            .journey-content,
-            .journey-item:nth-child(even) .journey-content {
+            .journey-line { left: 30px; }
+            .journey-item, .journey-item:nth-child(even) { justify-content: flex-start; }
+            .journey-content, .journey-item:nth-child(even) .journey-content {
                 width: calc(100% - 80px);
                 margin-left: 60px;
                 text-align: left !important;
                 order: 1 !important;
             }
+            .journey-dot { left: 30px; }
             
-            .journey-icon {
-                left: 30px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .calendar-grid {
-                grid-template-columns: repeat(7, 40px);
-            }
-            
-            .calendar-day {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title::before,
-            .section-title::after {
-                display: none;
-            }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .calendar-grid { grid-template-columns: repeat(7, 40px); }
+            .calendar-day { width: 40px; height: 40px; font-size: 1rem; }
+            .section-title { font-size: 2.5rem; }
         }
 
-        /* Animations on Scroll */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -682,45 +587,60 @@
 </head>
 <body>
 
-    <!-- Music Player -->
-    <div class="music-player" onclick="toggleMusic()">
-        <div class="music-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" id="musicIcon">
-                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-            </svg>
-        </div>
-        <div class="music-text">
-            <div>Hayko - Երանի սրտիս</div>
-            <small id="musicStatus">Սեղմեք նվագելու համար</small>
-        </div>
+    <!-- Music Button Only -->
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+        <svg viewBox="0 0 24 24" id="musicIcon">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
     </div>
 
+    <!-- Audio Element -->
     <audio id="bgMusic" loop>
-        <source src="https://example.com/hayko-yerani-srtis.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="floating-hearts" id="hearts"></div>
-        <h1>Մեր Հարսանիքը</h1>
+        <h1>եր Հարսանիքը</h1>
         <div class="names">Անուն & Անուն</div>
         <div class="date">14 Նոյեմբերի, 2026</div>
+        
+        <!-- Countdown -->
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Օր</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Ժամ</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">ոպե</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Վայրկյան</span>
+            </div>
+        </div>
+        
         <div class="scroll-indicator">↓</div>
     </section>
 
-    <!-- Welcome Text -->
+    <!-- Welcome -->
     <section>
         <div class="welcome fade-in">
             <p>
-                իրելի հարազատներ,<br><br>
+                Սիրելի հարազատներ,<br><br>
                 Սրտանց հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենակարևոր և գեղեցիկ օրը՝ մեր հարսանիքը։
             </p>
         </div>
     </section>
 
-    <!-- Journey Timeline -->
+    <!-- Journey Timeline with Dots -->
     <section class="journey">
-        <h2 class="section-title">Մեր Ճանապարհը</h2>
+        <h2 class="section-title">եր Ճանապարհը</h2>
         <div class="journey-line"></div>
         
         <div class="journey-item">
@@ -731,11 +651,11 @@
                     Ք.Երևան, Մոսկովյան 7
                 </div>
             </div>
-            <div class="journey-icon">🏠</div>
+            <div class="journey-dot"></div>
         </div>
 
         <div class="journey-item">
-            <div class="journey-icon">👰</div>
+            <div class="journey-dot"></div>
             <div class="journey-content">
                 <div class="journey-time">13:00</div>
                 <div class="journey-title">Հարսի տուն</div>
@@ -748,23 +668,24 @@
         <div class="journey-item">
             <div class="journey-content">
                 <div class="journey-time">14:00</div>
-                <div class="journey-title">սակադրություն</div>
+                <div class="journey-title">Պսակադրություն</div>
                 <div class="journey-address">
-                    Եկեղեցի՝ Սուրբ Սարգիս
+                    Եկեղեցի Սուրբ Սարգիս
                 </div>
-                <img src="https://images.unsplash.com/photo-1548625149-fc4a29cf7092?w=600" alt="ուրբ Սարգիս" class="journey-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Saint_Sarkis_Cathedral%2C_Yerevan.jpg/800px-Saint_Sarkis_Cathedral%2C_Yerevan.jpg" alt="Սուրբ Սարգիս" class="journey-image">
             </div>
-            <div class="journey-icon"></div>
+            <div class="journey-dot"></div>
         </div>
 
         <div class="journey-item">
-            <div class="journey-icon"></div>
+            <div class="journey-dot"></div>
             <div class="journey-content">
                 <div class="journey-time">16:00</div>
-                <div class="journey-title">Զագսի արարողություն</div>
+                <div class="journey-title">ագսի արարողություն</div>
                 <div class="journey-address">
                     Կասկադ
                 </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cascade_complex_in_Yerevan_03.jpg/800px-Cascade_complex_in_Yerevan_03.jpg" alt="Կասկադ" class="journey-image">
             </div>
         </div>
 
@@ -775,60 +696,52 @@
                 <div class="journey-address">
                     Դվին Մյուզիք հոլլ
                 </div>
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Դվին Մյուզիք հոլլ" class="journey-image">
+                <img src="https://dvinmusichall.com/wp-content/uploads/2021/03/dvin-music-hall-interior.jpg" alt="Դվին Մյուզիք հոլլ" class="journey-image" onerror="this.src='https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800'">
             </div>
-            <div class="journey-icon"></div>
+            <div class="journey-dot"></div>
         </div>
     </section>
 
-    <!-- Photo Gallery -->
+    <!-- Gallery -->
     <section class="gallery fade-in">
-        <h2 class="section-title">Մեր ահերը</h2>
+        <h2 class="section-title">եր Պահերը</h2>
         <div class="gallery-grid">
             <div class="gallery-item" onclick="openLightbox(0)">
                 <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" alt="Նկար 1">
-                <div class="gallery-overlay">եր սիրո պատմությունը</div>
             </div>
             <div class="gallery-item" onclick="openLightbox(1)">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="Նկար 2">
-                <div class="gallery-overlay">Առաջին հանդիպում</div>
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="կար 2">
             </div>
             <div class="gallery-item" onclick="openLightbox(2)">
                 <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600" alt="Նկար 3">
-                <div class="gallery-overlay">իասին</div>
             </div>
             <div class="gallery-item" onclick="openLightbox(3)">
                 <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Նկար 4">
-                <div class="gallery-overlay">Առաջարկություն</div>
             </div>
             <div class="gallery-item" onclick="openLightbox(4)">
                 <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600" alt="Նկար 5">
-                <div class="gallery-overlay">իրով լի</div>
             </div>
             <div class="gallery-item" onclick="openLightbox(5)">
                 <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?w=600" alt="Նկար 6">
-                <div class="gallery-overlay">Հավեր</div>
             </div>
         </div>
     </section>
 
-    <!-- Calendar Section -->
+    <!-- Calendar -->
     <section class="calendar-section fade-in">
-        <h2 class="section-title">Նշեք Ձեր րացույցում</h2>
+        <h2 class="section-title">Նշեք Ձեր Օրացույցում</h2>
         <div class="calendar-container">
-            <div class="calendar-header">ոյեմբեր 2026</div>
-            <div class="calendar-grid" id="calendar">
-                <!-- Calendar will be generated by JavaScript -->
-            </div>
+            <div class="calendar-header">Նոյեմբեր 2026</div>
+            <div class="calendar-grid" id="calendar"></div>
         </div>
         <p style="margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--text-light);">
             Սպասում ենք Ձեզ այս հատուկ օրը ♥
         </p>
     </section>
 
-    <!-- RSVP Section -->
+    <!-- RSVP -->
     <section class="rsvp fade-in">
-        <h2 class="section-title">Հաստատել Մասնակցությունը</div>
+        <h2 class="section-title">Հաստատել Մասնակցությունը</h2>
         <form class="rsvp-form" onsubmit="handleSubmit(event)">
             <div class="form-group">
                 <label>Անուն Ազգանուն</label>
@@ -860,18 +773,13 @@
                 </select>
             </div>
             
-            <div class="form-group">
-                <label>Ցանկություններ (ըստ ցանկության)</label>
-                <textarea rows="4" placeholder="եր ցանկությունները կամ հարցերը..."></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">ւղարկել</button>
+            <button type="submit" class="submit-btn">Ուղարկել</button>
         </form>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>Սիրով՝ Մենք</p>
+        <p>Սիրով Մենք</p>
         <p style="font-family: 'Noto Sans Armenian', sans-serif; font-size: 1rem; color: var(--text-light); margin-top: 10px;">
             14.11.2026
         </p>
@@ -884,37 +792,41 @@
     </div>
 
     <script>
-        // Generate Hearts
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts');
-            const heartSymbols = ['♥', '💕', '💖', '💗'];
-            
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 10 + 's';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                heartsContainer.appendChild(heart);
-            }
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('November 14, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
 
-        // Music Player
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Music Player - Fixed
         let isPlaying = false;
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
         function toggleMusic() {
-            const music = document.getElementById('bgMusic');
-            const status = document.getElementById('musicStatus');
-            const icon = document.getElementById('musicIcon');
-            
             if (isPlaying) {
-                music.pause();
-                status.textContent = 'Սեղմեք նվագելու համար';
-                icon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                musicIcon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
             } else {
-                music.play();
-                status.textContent = 'Այժմ նվագում է...';
-                icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+                bgMusic.play();
+                musicBtn.classList.add('playing');
+                musicIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
             }
             isPlaying = !isPlaying;
         }
@@ -922,10 +834,9 @@
         // Calendar Generation
         function generateCalendar() {
             const calendar = document.getElementById('calendar');
-            const days = ['րկ', 'Երք', 'Չոր', 'Հնգ', 'Ուրբ', 'աբ', 'Կիր'];
-            const specialDate = 14; // November 14, 2026
+            const days = ['Երկ', 'Երք', 'որ', 'Հնգ', 'Ուրբ', 'Շաբ', 'Կիր'];
+            const specialDate = 14;
             
-            // Day headers
             days.forEach(day => {
                 const dayHeader = document.createElement('div');
                 dayHeader.className = 'calendar-day-header';
@@ -933,17 +844,14 @@
                 calendar.appendChild(dayHeader);
             });
             
-            // November 2026 starts on Sunday (0)
-            const startDay = 0; // Sunday
+            const startDay = 0;
             const daysInMonth = 30;
             
-            // Empty cells for days before the 1st
             for (let i = 0; i < startDay; i++) {
                 const emptyCell = document.createElement('div');
                 calendar.appendChild(emptyCell);
             }
             
-            // Days
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayCell = document.createElement('div');
                 dayCell.className = 'calendar-day';
@@ -951,7 +859,7 @@
                 
                 if (day === specialDate) {
                     dayCell.classList.add('special');
-                    dayCell.title = 'Մեր հարսանիքի օրը! ♥';
+                    dayCell.title = 'եր հարսանիքի րը! ♥';
                 }
                 
                 calendar.appendChild(dayCell);
@@ -982,7 +890,7 @@
         // Form Submit
         function handleSubmit(e) {
             e.preventDefault();
-            alert('Շնորհակալություն! Ձեր պատասխանը ստացվել է։ Սպասում ենք Ձեզ մեր հարսանիքին! ♥');
+            alert('Շնորհակալություն! Ձեր պատասխանը ստացվել է։ պասում ենք Ձեզ մեր հարսանիքին! ♥');
             e.target.reset();
         }
 
@@ -1002,23 +910,19 @@
 
         // Initialize
         window.addEventListener('load', () => {
-            createHearts();
             generateCalendar();
             handleScroll();
         });
 
         window.addEventListener('scroll', handleScroll);
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        // Auto-play music on first user interaction
+        document.addEventListener('click', function initMusic() {
+            if (!isPlaying) {
+                toggleMusic();
+            }
+            document.removeEventListener('click', initMusic);
+        }, { once: true });
     </script>
 </body>
 </html>
